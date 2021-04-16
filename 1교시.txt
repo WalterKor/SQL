@@ -1,0 +1,62 @@
+#!= <>
+
+
+SELECT * FROM titles
+WHERE title != 'staff';
+
+SELECT * FROM titles
+WHERE title <> 'staff'; #개인적으로 사용하지 않는게 좋을거같다. 
+
+
+/*As는 where 절에서 사용이 불가능하다. 
+having과 order by절에서는 사용이 가능하다.*/
+
+SELECT*FROM salaries
+WHERE salary >= 70000
+AND salary <= 80000
+ORDER BY salary;
+
+
+SELECT * FROM salaries
+GROUP BY emp_no #셀렉트가 끝나고 난뒤에 그룸핑한다. 
+ORDER BY salary;
+
+SELECT*FROM salaries
+HAVING salary BEWEEN 70000 AND 80000
+ORDER BY salary;
+ 
+ 
+SELECT*FROM employees
+WHERE first_name LIKE 'G%';
+
+SELECT*FROM employees
+WHERE first_name LIKE '%G';
+
+SELECT*FROM employees
+WHERE first_name LIKE '%en%'; #속도가 겁나 느리다.
+ 
+SELECT*FROM employees
+WHERE first_name LIKE '%_en%'; #en앞에 한자리는 무조건 존재해야한다.
+
+SELECT *FROM titles
+WHERE title = 'Staff' 
+OR title = 'Engineer';
+
+SELECT *FROM titles
+WHERE title IN ('Staff', 'Engineer'); /*In은 속도가 느리다. */
+
+
+#서브쿼리
+SELECT*FROM employees
+WHERE gender = (
+SELECT gender FROM employees
+WHERE emp_no = 10110
+);
+
+
+
+(SELECT gender FROM employees
+WHERE emp_no = 10110);
+
+
+
